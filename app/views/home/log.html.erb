@@ -1,0 +1,37 @@
+<h1 class='page-header'>Log Game</h1>
+
+<!-- <div class="alert alert-warning" role="alert">This is a sample page. Replace link in the header with your own.</div> -->
+
+
+
+<%= form_for  :match, url: matches_path  do |form| %>
+
+	<p>
+		<%= form.label :played_date %><br>
+		<%= form.date_field :played_date, data:{ provide:'datepicker' },:required => true %>
+	</p>
+
+	<p>
+		<%= form.label :opponent_user %><br>
+		<%#= form.collection_select :opponent, User.all.order(:email),:id,:email, 
+	                                                       include_blank: true %>
+	    <%= form.select :opponent_id, User.all.select{|u| u != current_user }.collect {|c| [c.email, c.id]},:required => true %>
+	</p>  
+
+	<p>
+		<%= form.label :your_score %><br>
+		<%= form.number_field :your_score,:required => true %>
+	</p>
+
+	<p>
+		<%= form.label :their_score %><br>
+		<%= form.number_field :their_score,:required => true%>
+	</p>
+
+	<p>
+		<%= form.submit %>
+	</p>
+
+<% end %>
+
+<%#= image_tag('log_game.png') %>
