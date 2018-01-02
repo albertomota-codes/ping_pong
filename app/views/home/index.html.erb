@@ -15,7 +15,7 @@
   </thead>
  
   <tbody>
-    <% User.all.each_with_index do |user,index| %>
+    <% User.all.sort{|u| -u.score}.each_with_index do |user,index| %>
       <tr>
 
         <td><%= index+1 %></td>
